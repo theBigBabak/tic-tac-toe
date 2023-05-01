@@ -9,3 +9,7 @@ class Settings:
         self.cell_number_color = '\033[38;2;192;192;192m'
         self.playerX_color = '\033[38;2;255;0;0m'
         self.playerO_color = '\033[38;2;0;0;255m'
+        self.VALID_MOVES = ('1', '2', '3', '4', '5', '6', '7', '8', '9')
+
+        # Player settings:
+        self.LABELS = ('X', 'O')
