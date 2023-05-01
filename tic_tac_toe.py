@@ -143,3 +143,13 @@ class TicTacToe:
             self.gameFirstPlayer = self.playerO
             self.gameSecondPlayer = self.playerX
             return True
+    
+    def tie_checker(self):
+        """Print 'Tie! and return True if the game gets tie."""
+        if self.settings.LABELS == set(self.the_table.table.values()):
+            self.change_first_player()
+            print("Tie!\n")
+            self.display_scores()
+            return True  # If the game gets Tie.
+        else:
+            return False  # If the game doesn't get tie.
