@@ -44,7 +44,7 @@ class TicTacToe:
         print("│Tic-Tac-Toe│".center(self.WIDTH))
         print(('-' * 13).center(self.WIDTH))
         print("Welcome")
-        self._how_to_play(self.WIDTH)
+        self._how_to_play()
         print("You can enter 'q' for quit or 's' for settings anytime.")
         print("Are you ready? (y)es/(q)uit/(s)ettings")
         self._starter_input()
@@ -75,7 +75,7 @@ class TicTacToe:
         Then displays the number of  current round.
         """
         self._increment_round()
-        print()
+        print(f"***round{self.round}***".center(self.WIDTH))
 
     def _increment_round(self):
         """Increments the round attribute."""
@@ -83,7 +83,7 @@ class TicTacToe:
 
     def display_first_player(self):
         """Print a statement that says who starts the game."""
-        print(f"!!!{self.game_first_player} starts the game!!!")
+        print(f"!!!{self.game_first_player.name} starts the game!!!")
         print('=' * self.WIDTH)
 
     def display_scores(self):
@@ -104,7 +104,7 @@ class TicTacToe:
             sys.exit()
         elif player_move == 's':
             pass
-        elif (not player_move.isnumeric()) or (player_move not in self.settings.LABELS):
+        elif (not player_move.isnumeric()) or (player_move not in self.settings.VALID_MOVES):
             print("Invalid input! Enter a number between 1 to 9.")
             self.get_player_move(which_player)
         elif self.the_table.table[player_move] in self.settings.LABELS:
@@ -126,8 +126,8 @@ class TicTacToe:
             print(f"{self.playerX.name} wins.\n")
             self.playerX.increment_player_score()
             self.display_scores()
-            self.gameFirstPlayer = self.playerX
-            self.gameSecondPlayer = self.playerO
+            self.game_first_player = self.playerX
+            self.game_second_player = self.playerO
             return True
         elif (self.the_table.table['1'] == self.the_table.table['2'] == self.the_table.table['3'] == 'O'
               or self.the_table.table['4'] == self.the_table.table['5'] == self.the_table.table['6'] == 'O'
@@ -140,13 +140,13 @@ class TicTacToe:
             print(f"{self.playerO.name} wins.\n")
             self.playerO.increment_player_score()
             self.display_scores()
-            self.gameFirstPlayer = self.playerO
-            self.gameSecondPlayer = self.playerX
+            self.game_first_player = self.playerO
+            self.game_second_player = self.playerX
             return True
     
     def tie_checker(self):
         """Print 'Tie! and return True if the game gets tie."""
-        if self.settings.LABELS == set(self.the_table.table.values()):
+        if set(self.the_table.table.values()) == {'O', 'X'}:
             self.change_first_player()
             print("Tie!\n")
             self.display_scores()
