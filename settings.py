@@ -12,4 +12,4 @@ class Settings:
         self.VALID_MOVES = ("1", "2", "3", "4", "5", "6", "7", "8", "9")
 
         # Player settings:
-        self.LABELS = ("$", "&")
+        self.LABELS = ("X", "O")
