@@ -2,13 +2,13 @@ import sys
 import random
 import copy
 
-try:
-    import colorama
-except ModuleNotFoundError:
-    print(
-        "Module 'colorama' not installed on your system.\nPlease install it first then run the game again."
-    )
-    sys.exit()
+# try:
+#     import colorama
+# except ModuleNotFoundError:
+#     print(
+#         "Module 'colorama' not installed on your system.\nPlease install it first then run the game again."
+#     )
+#     sys.exit()
 
 from settings import Settings
 from table import Table
@@ -22,7 +22,7 @@ class TicTacToe:
 
     def __init__(self):
         """Initialize a tic-tac-toe game attributes."""
-        colorama.init()
+        # colorama.init()
 
         self.settings = Settings()
         self.the_table = Table()
@@ -48,8 +48,8 @@ class TicTacToe:
         print(("-" * 13).center(self.WIDTH))
         print("Welcome")
         self._how_to_play()
-        print("You can enter 'q' for quit or 's' for settings anytime.")
-        print("Are you ready? (y)es/(q)uit/(s)ettings")
+        print("You can enter 'q' for quit.")
+        print("Are you ready? (y)es/(q)uit")
         self._starter_input()
 
     def _how_to_play(self):
@@ -67,10 +67,8 @@ class TicTacToe:
                 sys.exit()
             elif user_input.lower() == "y":
                 break
-            elif user_input.lower() == "s":
-                pass
             else:
-                print("You should enter 'y' or 'q' or 's'")
+                print("You should enter 'y' or 'q'")
 
     def display_round(self):
         """
@@ -108,8 +106,6 @@ class TicTacToe:
         player_move = input(f"{which_player.name} enter your move: ")
         if player_move == "q":
             sys.exit()
-        elif player_move == "s":
-            pass
         elif (not player_move.isnumeric()) or (
             player_move not in self.settings.VALID_MOVES
         ):
